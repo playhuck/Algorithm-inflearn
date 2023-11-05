@@ -1,7 +1,7 @@
 
 function solution() {
     
-    let result = '';
+    let result = [];
 
     return result;
 };
