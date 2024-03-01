@@ -10,7 +10,6 @@ const boards = [[0, 0, 0, 0, 0], [0, 0, 1, 0, 3], [0, 2, 5, 0, 1], [4, 2, 4, 4, 
 /** @type {number[]} */
 const moves = [1, 5, 3, 5, 1, 2, 1, 4];
 
-[0, 3, 0, 5,]
 /**
  * @param {number[][]} board - 2차원 숫자 배열
  * @param {number[]} move - 이동 값
@@ -52,4 +51,49 @@ function solution(board, move) {
 console.log(solution(
     boards,
     moves)
+);
+
+/**
+ * @param {number[][]} board - 2차원 숫자 배열
+ * @param {number[]} move - 이동 값
+ */
+function solution2(board, move) {
+
+    let result = 0;
+
+    const stack = [];
+    
+    move.forEach(pos => {
+
+        for (let i = 0; i < board.length; i++) {
+            
+            // targetBoard가 0이 아니라면,
+            if(board[i][pos - 1] !== 0) {
+
+                let tmp = board[i][pos-1]; // targetBoard
+
+                board[i][pos - 1] = 0; // 꺼낸 인형 값은 0
+
+                if(tmp === stack[stack.length - 1]) {
+                    stack.pop();
+
+                    result += 2;
+                } else {
+                    stack.push(tmp);
+                    
+                };
+
+                break;
+
+            }
+            
+        }
+    })
+
+    return result;
+};
+
+console.log(solution2(
+    [[0, 0, 0, 0, 0], [0, 0, 1, 0, 3], [0, 2, 5, 0, 1], [4, 2, 4, 4, 2], [3, 5, 1, 3, 1]],
+    [1, 5, 3, 5, 1, 2, 1, 4])
 );

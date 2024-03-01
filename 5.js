@@ -63,3 +63,34 @@ function solution(str) {
 
 console.log(solution(`(((()(()()))(())()))(()())
 `));
+
+/**
+ * @param {string} str
+ * @returns {} - 
+ * @comment
+ */
+function solution2(str) {
+
+    let answer = 0;
+    let stack = [];
+
+    for (let i = 0; i < str.length; i++) {
+        
+        if(str[i] === '(') stack.push(str[i]);
+        else {
+
+            stack.pop();
+        
+            if(str[i - 1] === '(') {
+                answer += (stack.length);
+            } else {
+                answer += 1;
+            }
+        }
+        
+    }
+
+    return answer;
+};
+
+console.log(solution2(`(((()(()()))(())()))(()())`));
